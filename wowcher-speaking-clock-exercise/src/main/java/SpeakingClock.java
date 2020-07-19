@@ -40,8 +40,6 @@ public class SpeakingClock {
   };
 
 
-
-
   public String transformToString(String hours) {
 
     String[] splitedString = hours.split(":");
@@ -49,9 +47,16 @@ public class SpeakingClock {
     int hour = Integer.parseInt(splitedString[0]);
     int minute = Integer.parseInt(splitedString[1]);
 
+    if(hour == 0){
+      return "It's Midnight";
+    } else if(hour == 12) {
+      return "It's Midday";
+    }
 
     String hourText = numberToString(hour);
     String minuteText = numberToString(minute);
+
+
     String result = "It's" + hourText + minuteText ;
     return result;
   }
