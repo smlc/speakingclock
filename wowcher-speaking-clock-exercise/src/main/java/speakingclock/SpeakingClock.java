@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+package speakingclock;
 
 public class SpeakingClock {
 
@@ -44,8 +43,19 @@ public class SpeakingClock {
 
     String[] splitedString = hours.split(":");
 
-    int hour = Integer.parseInt(splitedString[0]);
-    int minute = Integer.parseInt(splitedString[1]);
+    int hour = 0;
+    int minute = 0;
+    try {
+      hour= Integer.parseInt(splitedString[0]);
+      minute = Integer.parseInt(splitedString[1]);
+    }catch (NumberFormatException e){
+      throw new NumberFormatException("The input number is invalid, enter a valid 24 hour clock number");
+    }
+
+
+    if(hour > 24 || minute > 59) {
+      throw new IllegalArgumentException("The input number is invalid, enter a valid 24 hour clock number");
+    }
 
     if(hour == 0){
       return "It's Midnight";
@@ -62,7 +72,7 @@ public class SpeakingClock {
   }
 
   private String numberToString(int number) {
-    String result;
+    String result = "";
     if(number <= 19){
       result = num[number];
     } else {
